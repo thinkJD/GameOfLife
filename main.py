@@ -12,18 +12,18 @@ class App(tk.Frame):
         self.play_field = tk.Canvas(self.parent, width=400, height=400)
         self.play_field.pack()
         self.display_grid()
-        self.game = GameOfLife.GameOfLife(10, 10)
+        self.game = GameOfLife.GameOfLife(100, 100)
         self.generations = 0
 
     def display_grid(self, data=[]):
         self.play_field.delete(tk.ALL)
         for row in range(len(data)):
             for col in range(len(data[0])):
-                rect = (row * 10, col * 10, (row + 1) * 10, (col + 1) * 10)
+                rect = (row * 4, col * 4, (row + 1) * 4, (col + 1) * 4)
                 if data[row][col] == 0:
-                    self.play_field.create_rectangle(rect, fill='grey')
+                    self.play_field.create_rectangle(rect, fill='black')
                 else:
-                    self.play_field.create_rectangle(rect, fill='blue')
+                    self.play_field.create_rectangle(rect, fill='green')
 
     def update_game(self):
         data = self.game.next_generation()
@@ -38,7 +38,6 @@ class App(tk.Frame):
 
 def main():
     root = tk.Tk()
-    root.na
     App(root).pack(side="top", fill="both", expand=True)
     root.mainloop()
 
